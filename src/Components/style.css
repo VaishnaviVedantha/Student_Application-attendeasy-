@@ -1,0 +1,123 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+  
+  .background-img {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: url(images/bg-image.jpg);
+    background-size: cover;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 650px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 28px;
+    margin: 0 28px;
+    border-radius: 10px;
+    box-shadow: inset -2px 2px 2px white;
+  }
+  
+  .form-title {
+    font-size: 35px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 6px;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    border-bottom: solid 1px white;
+  }
+  
+  .main-user-info {
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .user-input-box {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 480px;
+    height: 80px;
+    background: #eaeaea;
+    border-radius: 6px;
+  }
+  
+  .user-input-box:nth-child(2n) {
+    justify-content: end;
+  }
+  
+  .user-input-box img {
+    margin: 0px 30px;
+  }
+  
+  .user-input-box input {
+    height: 40px;
+    width: 95%;
+    background: transparent;
+    outline: none;
+    color: #797979;
+    border: none;
+    padding: 0 10px;
+    font-size: 20px;
+  }
+  
+  .form-submit-btn {
+    margin-top: 40px;
+  }
+  
+  button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    color: rgb(209, 209, 209);
+    background: rgba(63, 114, 76, 0.7);
+    color: white;
+  }
+  
+  .form-submit-btn button:hover {
+    background: rgba(56, 204, 93, 0.7);
+    color: rgb(255, 255, 255);
+  }
+
+
+  .centered-container {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+  }
+  .scanner-container {
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    height: 100vh; /* Full viewport height */
+  }
+  
+  .scanner-content {
+    text-align: center; /* Center text horizontally within the content */
+  }
+  
+  .error-message {
+    color: red; /* Highlight error messages */
+  }
+  
+  .container-title {
+    color: black;
+    font-size: 40px;
+  }

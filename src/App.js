@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import './index.css';
+import Register from './Components/Register';
+import QRScanner from './Components/QRScanner';
 
 function App() {
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [rollnumber, setRollnumber] = useState('');
+
+  useEffect(() => {
+    // Check local storage for roll number on component mount
+    const savedRollnumber = localStorage.getItem('rollnumber');
+    if (savedRollnumber) {
+      setRollnumber(savedRollnumber);
+      setIsRegistered(true);
+    }
+  }, []);
+
+  const handleRegistration = (rollnumber) => {
+    setRollnumber(rollnumber);
+    setIsRegistered(true);
+    localStorage.setItem('rollnumber', rollnumber);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      {!isRegistered ? (
+        <Register onRegister={handleRegistration} />
+      ) : (
+        <QRScanner rollnumber={rollnumber} />
+      )}
     </div>
   );
 }
