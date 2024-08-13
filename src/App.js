@@ -34,3 +34,16 @@ function App() {
 }
 
 export default App;
+
+
+/*import Scanner from './Components/Scanner';
+import './index.css';
+
+function App() {
+  return (
+    <Scanner />
+  );
+}
+
+export default App;*/
+

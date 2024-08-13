@@ -22,10 +22,8 @@ const QRScanner = () => {
   }, []);
 
   useEffect(() => {
-    if (rollnumber) {
-      fetchLocation();
-    }
-  }, [rollnumber]);
+    fetchLocation();
+  }, []);
 
   const fetchLocation = () => {
     if (navigator.geolocation) {
@@ -59,16 +57,17 @@ const QRScanner = () => {
 
     const scanner = new Html5QrcodeScanner("reader", {
       qrbox: {
-        width: 250,
-        height: 250,
+        width: 300,
+        height: 300,
       },
-      fps: 5,
+      fps: 10,
     });
 
     scannerRef.current = scanner;
 
     const handleScanSuccess = async (decodedText) => {
       try {
+        console.log("QR Code scanned:", decodedText);
         const uniqueId = decodedText.trim();
         
         if (!uniqueId) {
@@ -111,12 +110,22 @@ const QRScanner = () => {
 
     const handleScanError = (err) => {
       console.error("QR code scanning error:", err);
-      setError("An error occurred during scanning. Please try again.");
+      if (err.message.includes("NotFoundException")) {
+        setError("No QR code found. Please ensure the QR code is in the frame.");
+      } else {
+        setError("An error occurred during scanning. Please try again.");
+      }
       setUserDetails(null);
       setMessage(null);
     };
 
-    scanner.render(handleScanSuccess, handleScanError);
+    try {
+      scanner.render(handleScanSuccess, handleScanError);
+      console.log("Scanner initialized successfully.");
+    } catch (err) {
+      console.error("Failed to initialize scanner:", err);
+      setError("Failed to initialize scanner.");
+    }
 
     return () => {
       if (scannerRef.current) {
@@ -130,7 +139,7 @@ const QRScanner = () => {
   return (
     <div className='centered-container'>
       <h1 className='container-title'>Scan QR Code</h1>
-      <div>Registered Roll number: {rollnumber}</div>
+      <div>Registered Roll number: {rollnumber || 'Not Registered'}</div>
       <div>Location: {location ? `${location.latitude}, ${location.longitude}` : 'Retrieving location...'}</div>
       {error && <div style={{ color: 'red' }}>{error}</div>}
       {message && (
@@ -147,7 +156,7 @@ const QRScanner = () => {
         </div>
       )}
       {!userDetails && !error && !message && (
-        <div id="reader" style={{ width: '500px' }}></div>
+        <div id="reader" style={{ width: '500px', height: '250px' }}></div>
       )}
     </div>
   );

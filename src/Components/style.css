@@ -121,3 +121,49 @@
     color: black;
     font-size: 40px;
   }
+
+
+  @media (max-width: 600px) {
+    .container {
+      min-width: 280px;
+      padding: 20px; /* Add padding for smaller screens */
+    }
+  
+    .user-input-box {
+      margin-bottom: 12px;
+      width: 100%; /* Adjust width for smaller screens */
+    }
+    
+    .user-input-box:nth-child(2n) {
+      justify-content: space-between;
+    }
+    
+    .main-user-info {
+      max-height: 380px;
+      overflow: auto; /* Enable scrolling for overflow content */
+    }
+  
+    .main-user-info::-webkit-scrollbar {
+      width: 0; /* Hide the scrollbar */
+    }
+  
+    .centered-container {
+      padding: 20px; /* Add padding for smaller screens */
+    }
+  
+    .scanner-container {
+      height: 50vh; /* Reduce height for smaller screens */
+    }
+  
+    .scanner-content {
+      font-size: 14px; /* Decrease font size for smaller screens */
+    }
+  
+    .error-message {
+      font-size: 12px; /* Decrease font size for error messages on smaller screens */
+    }
+  
+    .container-title {
+      font-size: 30px; /* Decrease font size for title on smaller screens */
+    }
+  }
