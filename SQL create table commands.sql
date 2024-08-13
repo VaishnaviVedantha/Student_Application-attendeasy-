@@ -52,6 +52,55 @@ CREATE TABLE student_details (
     INDEX (registrant_id)
 );
 
+CREATE VIEW student_details_view AS
+SELECT 
+    details_id,
+    subject_code,
+    subject_name,
+    registrant_id,
+    roll_number,
+    name,
+    email,
+    mobile_number,
+    latitude,
+    longitude,
+    created_at
+FROM 
+    student_details;
+    
+    CREATE TABLE faculty_login (
+    facultyid INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    UNIQUE(email)
+);
+
+CREATE TABLE faculty_permissions (
+    permissionid INT AUTO_INCREMENT PRIMARY KEY,
+    facultyid INT NOT NULL,
+    subject_code VARCHAR(255) NOT NULL,
+    subject_name VARCHAR(255) NOT NULL,
+    FOREIGN KEY (facultyid) REFERENCES faculty_login(facultyid),
+    INDEX (facultyid),
+    INDEX (subject_code),
+    INDEX (subject_name)
+);
+
+CREATE TABLE faculty_password_reset_tokens (
+    reset_id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(100) NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+    FOREIGN KEY (email) REFERENCES faculty_login(email),
+    INDEX (token)
+);
+
+
+
+
+
+
+
 
 
 

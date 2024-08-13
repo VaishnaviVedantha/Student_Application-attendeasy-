@@ -9,7 +9,7 @@ dotenv.config();
 app.use(express.json());
 
 app.use(cors({
-    origin:'http://localhost:3000',
+    origin:'*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization', 'faculty_id', 'stored-rollnumber'],
     credentials: true
@@ -151,7 +151,7 @@ app.get('/QRscanner/:uniqueId', async (req, res) => {
                 message: 'QR code processed successfully.', 
                 subject_code,
                 subject_name,
-                roll_number: storedRollnumber, // Include roll number
+                roll_number: storedRollnumber, 
                 name,
                 email,
                 mobile_number
